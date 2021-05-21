@@ -31,8 +31,13 @@ namespace OperationsResearch_СourseWork
             get { return pathOutputData; }
             set
             {
+
                 pathOutputData = value;
-                errors["PathOutputData"] = null;
+                FileInfo file = new FileInfo(@$"OutputData/{pathOutputData}.xlsx");
+                if (file.Exists)
+                    errors["PathOutputData"] = "Файл вже існує";
+                else
+                    errors["PathOutputData"] = null;
                 OnPropertyChanged("PathOutputData");
             }
         }

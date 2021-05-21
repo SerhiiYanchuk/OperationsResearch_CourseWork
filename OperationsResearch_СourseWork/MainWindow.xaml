@@ -57,8 +57,8 @@
         <Grid  Grid.Column="0" >
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.05*"></RowDefinition>
-                <RowDefinition Height="0.4*"></RowDefinition>
+                <RowDefinition Height="0.03*"></RowDefinition>
+                <RowDefinition Height="0.42*"></RowDefinition>
                 <RowDefinition Height="0.55*"></RowDefinition>
             </Grid.RowDefinitions>
 
@@ -67,7 +67,7 @@
             </Viewbox>
 
             <!-- Solution -->
-            <Viewbox Grid.Row="1" HorizontalAlignment="Center" Margin="0,0,0,0" >
+            <Viewbox Grid.Row="1" HorizontalAlignment="Center" Margin="0,5,0,0" >
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
                         <TextBlock Margin="0 0 5 0" Style="{StaticResource InputDataText}">Файл з даними:</TextBlock>

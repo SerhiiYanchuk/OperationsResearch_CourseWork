@@ -10,23 +10,23 @@ namespace OperationsResearch_СourseWork
     partial class TRPZSolution
     {
         // вектор к-стей програмних продуктів i-ого виду
-        public float[] vA;
+        public int[] vA;
         // вектор к-стей спеціалістів j-ої категорії
-        public float[] vB;
+        public int[] vB;
         public int ASize;
         public int BSize;
         // матриця зарплат спецілістів j-ої категорії, що працюють над i-тим програмним продуктом
         public float[,] mC;
 
         // Компенсаторний цикл
-        private Element[] Allowed;// хранит координаты клеток, в которых есть груз
-        // Конструкторы
-        public TRPZSolution(float[] vProjects, float[] vPrices)
+        private Element[] Allowed;// зберігає координати елементів, що входять до циклу
+        // Конструктори
+        public TRPZSolution(int[] vProjects, float[] vPrices)
         {
             PrepareData(vProjects, vPrices);
         }
 
-        private void PrepareData(float[] vProjects, float[] vPrices)
+        private void PrepareData(int[] vProjects, float[] vPrices)
         {
             int n = vProjects.Length;
             mC = new float[n + 1, n];
@@ -37,8 +37,8 @@ namespace OperationsResearch_СourseWork
                     else
                         mC[i, j] = 100000;
 
-            float projectCount = vProjects.Sum();
-            vB = new float[n];
+            int projectCount = vProjects.Sum();
+            vB = new int[n];
             BSize = n;
             vB[0] = projectCount;
             for (int i = 0; i < n - 1; i++)
@@ -47,7 +47,7 @@ namespace OperationsResearch_СourseWork
                 vB[i + 1] = projectCount;
             }
 
-            vA = new float[n + 1];
+            vA = new int[n + 1];
             ASize = n + 1;
             vProjects.CopyTo(vA, 0);
             vA[n] = vB.Sum() - vProjects.Sum();
@@ -343,28 +343,28 @@ namespace OperationsResearch_СourseWork
             float val = CalcCF(mDBR);
             return vOpt.ToArray();
         }
+        struct Element
+        {
+            public int X { get; set; }
+            public int Y { get; set; }
+            public Element(int x, int y)
+            {
+                X = x;
+                Y = y;
+            }
 
+            public static bool operator ==(Element element1, Element element2)
+            {
+                return element1.X == element2.X && element1.Y == element2.Y;
+            }
+            public static bool operator !=(Element element1, Element element2)
+            {
+                return element1.X != element2.X || element1.Y != element2.Y;
+            }
+        }
     }
     
-    struct Element
-    {
-        public int X { get; set; }
-        public int Y { get; set; }
-        public Element(int x, int y)
-        {
-            X = x;
-            Y = y;
-        }
-
-        public static bool operator ==(Element element1, Element element2)
-        {
-            return element1.X == element2.X && element1.Y == element2.Y;
-        }
-        public static bool operator !=(Element element1, Element element2)
-        {
-            return element1.X != element2.X || element1.Y != element2.Y;
-        }
-    }
+    
 
    
 }

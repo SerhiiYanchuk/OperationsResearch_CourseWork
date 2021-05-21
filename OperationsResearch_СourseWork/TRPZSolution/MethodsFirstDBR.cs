@@ -19,19 +19,19 @@ namespace OperationsResearch_СourseWork
                 for (int j = 0; j < BSize; j++)
                     if (matrix[i, j] == 0) matrix[i, j] = float.NaN;
         }
-        private bool IsEmpty(float[] vector) => Array.TrueForAll(vector, delegate (float x) { return x == 0; });
+        private bool IsEmpty(int[] vector) => Array.TrueForAll(vector, delegate (int x) { return x == 0; });
         // Метод пн-зх кута
         public float[,] NordWestAngle()
         {
-            float[] Ahelp = vA;
-            float[] Bhelp = vB;
+            int[] Ahelp = vA;
+            int[] Bhelp = vB;
             int i = 0, j = 0;
             float[,] mDBR = new float[ASize, BSize];
             EmptyToNaN(mDBR);
 
             while (!(IsEmpty(Ahelp) && IsEmpty(Bhelp)))
             {
-                float Dif = Math.Min(Ahelp[i], Bhelp[j]);
+                int Dif = Math.Min(Ahelp[i], Bhelp[j]);
                 mDBR[i, j] = Dif;
                 Ahelp[i] -= Dif; Bhelp[j] -= Dif;
                 if ((Ahelp[i] == 0) && (Bhelp[j] == 0) && (j + 1 < BSize)) mDBR[i + 1, j] = 0;
@@ -49,7 +49,7 @@ namespace OperationsResearch_СourseWork
                 return true;
             return false;
         }
-        private bool IsOneNotZero(bool[] v1, bool[] v2, float[] d1, float[] d2)
+        private bool IsOneNotZero(bool[] v1, bool[] v2, int[] d1, int[] d2)
         {
             int q1 = v1.Sum(p => p ? 0 : 1);
             bool b1 = false;
@@ -79,10 +79,10 @@ namespace OperationsResearch_СourseWork
                 return true;
             return false;
         }
-        private bool IsRowsColumsZero(float[] d1, float[] d2)
+        private bool IsRowsColumsZero(int[] d1, int[] d2)
         {
-            bool b1 = Array.TrueForAll(d1, delegate (float x) { return x == 0; });
-            bool b2 = Array.TrueForAll(d2, delegate (float x) { return x == 0; });
+            bool b1 = Array.TrueForAll(d1, delegate (int x) { return x == 0; });
+            bool b2 = Array.TrueForAll(d2, delegate (int x) { return x == 0; });
             if (b1 && b2)
                 return true;
             return false;
@@ -99,8 +99,8 @@ namespace OperationsResearch_СourseWork
             FogelElement[] rE = new FogelElement[ASize];
             FogelElement[] cE = new FogelElement[BSize];
 
-            float[] Ahelp = vA;
-            float[] Bhelp = vB;
+            int[] Ahelp = vA;
+            int[] Bhelp = vB;
 
             float[,] mDBR = new float[ASize, BSize];
             EmptyToNaN(mDBR);
@@ -183,7 +183,7 @@ namespace OperationsResearch_СourseWork
                         maxPenaltyElem = cE[j];
                 }
 
-                float Dif = Math.Min(Ahelp[maxPenaltyElem.Y], Bhelp[maxPenaltyElem.X]);
+                int Dif = Math.Min(Ahelp[maxPenaltyElem.Y], Bhelp[maxPenaltyElem.X]);
                 mDBR[maxPenaltyElem.Y, maxPenaltyElem.X] = Dif;
                 Ahelp[maxPenaltyElem.Y] -= Dif;
                 Bhelp[maxPenaltyElem.X] -= Dif;
@@ -218,7 +218,7 @@ namespace OperationsResearch_СourseWork
                             }
                         }
 
-                        float Dif = Math.Min(Ahelp[minElemnt.Y], Bhelp[minElemnt.X]);
+                        int Dif = Math.Min(Ahelp[minElemnt.Y], Bhelp[minElemnt.X]);
                         mDBR[minElemnt.Y, minElemnt.X] = Dif;
                         Ahelp[minElemnt.Y] -= Dif;
                         Bhelp[minElemnt.X] -= Dif;
@@ -248,7 +248,7 @@ namespace OperationsResearch_СourseWork
                             }
                         }
 
-                        float Dif = Math.Min(Ahelp[minElemnt.Y], Bhelp[minElemnt.X]);
+                        int Dif = Math.Min(Ahelp[minElemnt.Y], Bhelp[minElemnt.X]);
                         mDBR[minElemnt.Y, minElemnt.X] = Dif;
                         Ahelp[minElemnt.Y] -= Dif;
                         Bhelp[minElemnt.X] -= Dif;

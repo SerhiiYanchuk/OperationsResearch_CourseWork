@@ -70,42 +70,70 @@ namespace OperationsResearch_СourseWork
             Predicate<object> canExecuted0 = obj => (obj as SolutionData).IsValid;
             Action<object> execute0 = obj =>
             {
-                (int n, float[] vProjects, float[] vPrices) = ReadData(@$"InputData/{solutionData.PathInputData}");
-                var solution = new TRPZSolution(vProjects, vPrices);
-       
-                var result = solutionData.ChosenAlgorithm switch
+                try
                 {
-                    Algorithm.Potential => solution.FindSolution(TRPZSolution.Method.NordWestAngel),
-                    Algorithm.Greedy => GreedySolution.DoGreedy(vProjects, vPrices)
-                };
-                ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+                    (int n, int[] vProjects, float[] vPrices) = ReadData(@$"InputData/{solutionData.PathInputData}");
+                    var solution = new TRPZSolution(vProjects, vPrices);
 
-                FileInfo file = new FileInfo(@$"OutputData/{solutionData.PathOutputData}.xlsx");
-                if (file.Exists)
-                    file.Delete();
-                using (var package = new ExcelPackage(file))
-                {
-                    ExcelWorksheet sheet = package.Workbook.Worksheets.Add("Solution");
-                    sheet.Cells[1, 1].Value = "Значення ЦФ";
-                    sheet.Cells[1, 2].Value = result.result;
-
-                    for (int i = 0; i <= result.mOpt.GetUpperBound(0) - 1; i++)
+                    var result = solutionData.ChosenAlgorithm switch
                     {
-                        for (int j = 0; j <= result.mOpt.GetUpperBound(1); j++)
-                        {
-                            if (!float.IsNaN(result.mOpt[i, j]))
-                                sheet.Cells[i + 3, j + 1].Value = result.mOpt[i, j];
-                            else
-                                sheet.Cells[i + 3, j + 1].Value = 0;
-                        }
+                        Algorithm.Potential => solution.FindSolution(TRPZSolution.Method.NordWestAngel),
+                        Algorithm.Greedy => GreedySolution.DoGreedy(vProjects, vPrices)
+                    };
+                    ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
 
-                        Console.WriteLine();
+                    DirectoryInfo directory = new DirectoryInfo("OutputData");
+                    if (!directory.Exists)
+                        directory.Create();
+                    FileInfo file = new FileInfo(@$"OutputData/{solutionData.PathOutputData}.xlsx");
+                    if (file.Exists)
+                        file.Delete();
+                    using (var package = new ExcelPackage(file))
+                    {
+                        ExcelWorksheet sheet = package.Workbook.Worksheets.Add("Solution");
+                        sheet.Cells[1, 1].Value = "Значення ЦФ:";
+                        sheet.Cells[1, 2].Value = result.result;
+
+                        int rows;
+                        if (solutionData.ChosenAlgorithm == Algorithm.Potential)
+                        {
+                            sheet.Cells[1, 4].Value = "Математична модель №1";
+                            rows = result.mOpt.GetUpperBound(0) - 1;
+                        }                           
+                        else
+                        {
+                            sheet.Cells[1, 4].Value = "Математична модель №2";
+                            rows = result.mOpt.GetUpperBound(0);
+                        }
+                            
+
+                        for (int j = 0; j <= result.mOpt.GetUpperBound(1); j++)
+                            sheet.Cells[3, j + 2].Value = $"Спеціаліст {j + 1}";
+
+                        
+                        for (int i = 0; i <= rows; i++)
+                        {
+                            sheet.Cells[i + 4, 1].Value = $"Проект {i+1}";
+                            for (int j = 0; j <= result.mOpt.GetUpperBound(1); j++)
+                            {
+                                if (!float.IsNaN(result.mOpt[i, j]))
+                                    sheet.Cells[i + 4, j + 2].Value = result.mOpt[i, j];
+                                else
+                                    sheet.Cells[i + 4, j + 2].Value = 0;
+                            }
+
+                            Console.WriteLine();
+                        }
+                        package.Save();
                     }
-                    package.Save();
+                    solutionData.PathInputData = string.Empty;
+                    solutionData.PathOutputData = string.Empty;
+                    solutionData.ChosenAlgorithm = Algorithm.Potential;
                 }
-                solutionData.PathInputData = string.Empty;
-                solutionData.PathOutputData = string.Empty;
-                solutionData.ChosenAlgorithm = Algorithm.Potential;
+                catch(ArgumentException)
+                {
+                    solutionData.PathInputData = "Невалідний файл";
+                }              
             };
             solutionCommand = new RelayCommand(execute0, canExecuted0);
 
@@ -137,7 +165,7 @@ namespace OperationsResearch_СourseWork
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
-        (int n, float[] vProjects, float[] vPrices) ReadData(string pathFile)
+        (int n, int[] vProjects, float[] vPrices) ReadData(string pathFile)
         {
 
             using (StreamReader sr = new StreamReader(pathFile, System.Text.Encoding.Default))
@@ -146,11 +174,16 @@ namespace OperationsResearch_СourseWork
                 int n = int.Parse(line);
 
                 string[] projects = sr.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                float[] vProjects = new float[projects.Length];
-                for (int i = 0; i < projects.Length; i++)
-                    vProjects[i] = float.Parse(projects[i]);
-
                 string[] prices = sr.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+                if (projects.Length != prices.Length)
+                    throw new ArgumentException("Кількість видів програмних продуктів не співпадають з кількістю категорій спеціалістів");
+
+                int[] vProjects = new int[projects.Length];
+                for (int i = 0; i < projects.Length; i++)
+                    vProjects[i] = int.Parse(projects[i]);
+
+                
                 float[] vPrices = new float[prices.Length];
                 for (int i = 0; i < prices.Length; i++)
                     vPrices[i] = float.Parse(prices[i]);

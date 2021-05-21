@@ -15,6 +15,10 @@ namespace OperationsResearch_СourseWork
         {
             ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
 
+            DirectoryInfo directory = new DirectoryInfo("ExperimentResult");
+            if (!directory.Exists)
+                directory.Create();
+
             FileInfo file = new FileInfo(@$"ExperimentResult/Experiment1.xlsx");
             if (file.Exists)
                 file.Delete();
@@ -55,7 +59,7 @@ namespace OperationsResearch_СourseWork
                             dB = random.NextDouble();
                         } while (dB < data.DB1 || dB > data.DB2);
 
-                        float[] vProjects = new float[n];
+                        int[] vProjects = new int[n];
                         delta = dB * b;
                         left = (int)Math.Floor(b - delta);
                         right = (int)Math.Floor(b + delta);
@@ -63,15 +67,17 @@ namespace OperationsResearch_СourseWork
                             vProjects[i] = random.Next(left, right + 1);
 
                         Stopwatch stopWatch = new Stopwatch();
-                        var solution = new TRPZSolution((float[])vProjects.Clone(), (float[])vPrices.Clone());
+                        //var solution = new TRPZSolution((float[])vProjects.Clone(), (float[])vPrices.Clone());
+                        var solution = new TRPZSolution(vProjects, vPrices);
                         stopWatch.Start();
                         solution.FindSolution(TRPZSolution.Method.NordWestAngel);
                         stopWatch.Stop();     
                         TimeSpan ts = stopWatch.Elapsed;
                         time1[k] = ts.TotalMilliseconds;
 
-                        stopWatch.Reset();                   
-                        solution = new TRPZSolution((float[])vProjects.Clone(), (float[])vPrices.Clone());
+                        stopWatch.Reset();
+                        //solution = new TRPZSolution((float[])vProjects.Clone(), (float[])vPrices.Clone());
+                        solution = new TRPZSolution(vProjects, vPrices);
                         stopWatch.Start();
                         solution.FindSolution(TRPZSolution.Method.Fogel);
                         stopWatch.Stop();
@@ -89,6 +95,9 @@ namespace OperationsResearch_СourseWork
         public static void Experiment3(ExperimentalData data)
         {
             ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+            DirectoryInfo directory = new DirectoryInfo("ExperimentResult");
+            if (!directory.Exists)
+                directory.Create();
 
             FileInfo file = new FileInfo(@$"ExperimentResult/Experiment3.xlsx");
             if (file.Exists)
@@ -130,7 +139,7 @@ namespace OperationsResearch_СourseWork
                             dB = random.NextDouble();
                         } while (dB < data.DB1 || dB > data.DB2);
 
-                        float[] vProjects = new float[n];
+                        int[] vProjects = new int[n];
                         delta = dB * b;
                         left = (int)Math.Floor(b - delta);
                         right = (int)Math.Floor(b + delta);
@@ -138,7 +147,7 @@ namespace OperationsResearch_СourseWork
                             vProjects[i] = random.Next(left, right + 1);
 
                         Stopwatch stopWatch = new Stopwatch();
-                        var solution = new TRPZSolution((float[])vProjects.Clone(), (float[])vPrices.Clone());
+                        var solution = new TRPZSolution(vProjects, vPrices);
                         stopWatch.Start();
                         solution.FindSolution(TRPZSolution.Method.NordWestAngel);
                         stopWatch.Stop();
@@ -166,6 +175,9 @@ namespace OperationsResearch_СourseWork
         public static void Experiment2(ExperimentalData data)
         {
             ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+            DirectoryInfo directory = new DirectoryInfo("ExperimentResult");
+            if (!directory.Exists)
+                directory.Create();
 
             FileInfo file = new FileInfo(@$"ExperimentResult/Experiment2.xlsx");
             if (file.Exists)
@@ -200,7 +212,7 @@ namespace OperationsResearch_СourseWork
                         dB = random.NextDouble();
                     } while (dB < data.DB1 || dB > data.DB2);
 
-                    float[] vProjects = new float[n];
+                    int[] vProjects = new int[n];
                     delta = dB * b;
                     left = (int)Math.Floor(b - delta);
                     right = (int)Math.Floor(b + delta);

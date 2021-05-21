@@ -22,6 +22,9 @@ namespace OperationsResearch_СourseWork
 
         public ExperimentalData()
         {
+            n1 = 100;
+            n2 = 900;
+            step = 100;
             c1 = 100;
             c2 = 1000;
             dC1 = 0.1f;

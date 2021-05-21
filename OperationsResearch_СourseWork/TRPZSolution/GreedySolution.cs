@@ -9,7 +9,7 @@ namespace OperationsResearch_СourseWork
     public static class GreedySolution
     {
         
-        public static (float[,] mOpt, float result) DoGreedy(float[] b, float[] c)
+        public static (float[,] mOpt, float result) DoGreedy(int[] b, float[] c)
         {
             if (b == null || c == null)
                 throw new ArgumentNullException(nameof(c), "Argument equal to null");
