@@ -50,24 +50,23 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"></ColumnDefinition>
-            <ColumnDefinition Width="0*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
 
         <Grid  Grid.Column="0" >
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.03*"></RowDefinition>
                 <RowDefinition Height="0.42*"></RowDefinition>
                 <RowDefinition Height="0.55*"></RowDefinition>
+                <RowDefinition Height="0.03*"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Viewbox Grid.Row="0" HorizontalAlignment="Right" Margin="0,0,0,0" >
-                <TextBlock Margin="0 0 5 0" Style="{StaticResource InputDataText}" >© Янчук Сергій, Долід Володимир</TextBlock>
+            <Viewbox Grid.Row="2" HorizontalAlignment="Right" Margin="0,5,20,0" >
+                <TextBlock Margin="0 0 0 0" Style="{StaticResource InputDataText}" >© Янчук Сергій, Долід Володимир</TextBlock>
             </Viewbox>
 
             <!-- Solution -->
-            <Viewbox Grid.Row="1" HorizontalAlignment="Center" Margin="0,5,0,0" >
+            <Viewbox Grid.Row="0" HorizontalAlignment="Center" Margin="0,10,0,0" >
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
                         <TextBlock Margin="0 0 5 0" Style="{StaticResource InputDataText}">Файл з даними:</TextBlock>
@@ -92,11 +91,11 @@
                     <Button x:Name="SolutionButton" Margin="0,3,0,0"
                             CommandParameter="{Binding SolutionData}" Command="{Binding SolutionCommand}" Content="Роз'язати" Width="130"/>
                 </StackPanel>
-                
+
             </Viewbox>
 
             <!-- Експерименти -->
-            <Viewbox Grid.Row="2" HorizontalAlignment="Center" Margin="0,20,0,0" >
+            <Viewbox Grid.Row="1" HorizontalAlignment="Center" Margin="0,20,0,0" >
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
                         <TextBlock Margin="0 0 2 0" Style="{StaticResource InputDataText}">n:</TextBlock>
@@ -109,7 +108,7 @@
                         <TextBlock Margin="5 0 2 0" Style="{StaticResource InputDataText}">step:</TextBlock>
                         <TextBox Width="30" Style="{StaticResource InputDataText}" 
                                  Text="{Binding ExperimentalData.Step, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
-                        
+
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
                         <TextBlock Margin="0 0 2 0" Style="{StaticResource InputDataText}">c:</TextBlock>
@@ -118,7 +117,7 @@
                         <TextBlock FontSize="15"> -</TextBlock>
                         <TextBox Width="30" Style="{StaticResource InputDataText}"
                                  Text="{Binding ExperimentalData.C2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
-                        
+
                         <TextBlock Margin="5 0 2 0" Style="{StaticResource InputDataText}">Δс:</TextBlock>
                         <TextBox Width="30" Style="{StaticResource InputDataText}" 
                                  Text="{Binding ExperimentalData.DC1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
@@ -142,9 +141,6 @@
                         <TextBox Width="30" Style="{StaticResource InputDataText}"
                                  Text="{Binding ExperimentalData.DB2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        
-                    </StackPanel>
 
                     <Button x:Name="ExperimentalButton1" Margin="0,3,0,0"
                             CommandParameter="{Binding ExperimentalData}" Command="{Binding ExperimentalCommand1}" Content="Експеримент 1" FontSize="10" Width="80"/>
@@ -155,30 +151,6 @@
                 </StackPanel>
 
             </Viewbox>
-        </Grid>
-
-        <Grid Grid.Column="1">
-
-            <!--<Grid.RowDefinitions>
-                <RowDefinition Height="0.4*"></RowDefinition>
-                <RowDefinition Height="0.6*"></RowDefinition>
-            </Grid.RowDefinitions>
-
-            --><!-- Поле и кнопка для генерации никнейма--><!--
-            <Viewbox Grid.Row="0" VerticalAlignment="Bottom">
-                <StackPanel Margin="0,0,5,5">
-
-                    <TextBox x:Name="outputText" Width="75" IsReadOnly="True" Style="{StaticResource OutputDataText}"
-                             Text="{Binding OutputNickname, Mode=OneWay}"/>
-                    <Button x:Name="GenerateButton" Margin="0,3,0,0" Template="{StaticResource ButtonTemplate}" 
-                            CommandParameter="{Binding CurrentData}" Command="{Binding GenerateCommand}" />
-
-                </StackPanel>
-            </Viewbox>
-
-            --><!-- Биг фото --><!--
-            <Image Grid.Row="1" Style="{StaticResource ImageWarriorThemeStyle}" VerticalAlignment="Top"></Image>-->
-
         </Grid>
     </Grid>
 </Window>

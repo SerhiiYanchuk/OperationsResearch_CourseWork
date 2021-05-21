@@ -1,77 +1,85 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="OperationsResearch_СourseWork.GreedySolution">
-    <Position X="8.5" Y="0.5" Width="1.5" />
+  <Class Name="OperationsResearch_СourseWork.ApplicationViewModel">
+    <Position X="11.75" Y="0.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
-      <FileName>TRPZSolution\GreedySolution.cs</FileName>
+      <HashCode>AgAAgAAAAAARAIAAIAgAAEAAgAAAAIAAAAgAAFIAAIA=</HashCode>
+      <FileName>ViewModelFolder\ApplicationViewModel.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OperationsResearch_СourseWork.ExperimentalData">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAQAAKgkAAMYAgADkAGIAIABiAAAAABA=</HashCode>
+      <FileName>Models\ExperimentalData.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OperationsResearch_СourseWork.SolutionData">
+    <Position X="9" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgCAAAAAAAQAAKAkAACAAgAAAAAAAIAAAAAAAAIA=</HashCode>
+      <FileName>Models\SolutionData.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="OperationsResearch_СourseWork.Experiment">
-    <Position X="11.5" Y="2" Width="1.5" />
+    <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAQAAAAAAAIAAAAAAAAAIAAAABAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Experiments\Experiment.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="OperationsResearch_СourseWork.ExperimentalData" BaseTypeListCollapsed="true">
-    <Position X="7.75" Y="2" Width="1.5" />
+  <Class Name="OperationsResearch_СourseWork.GreedySolution">
+    <Position X="4.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAEAAAAAAAAQAAKgkAAMYAgADkAGIAIABiAAAAABA=</HashCode>
-      <FileName>Models\ExperimentalData.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Solution\GreedySolution.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
-  <Class Name="OperationsResearch_СourseWork.SolutionData" BaseTypeListCollapsed="true">
-    <Position X="9.5" Y="2" Width="1.75" />
-    <TypeIdentifier>
-      <HashCode>AAAAgCAAAAAAAQAAKAkAACAAgAAAAAAAIAAAAAAAAIA=</HashCode>
-      <FileName>Models\SolutionData.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
-  <Class Name="OperationsResearch_СourseWork.ApplicationViewModel" BaseTypeListCollapsed="true">
-    <Position X="0.75" Y="2" Width="2" />
-    <TypeIdentifier>
-      <HashCode>AgAAgAAAAAARAIAAIAgAAEAAgAAAAIAAAAgAAFIAAIA=</HashCode>
-      <FileName>ViewModelFolder\ApplicationViewModel.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="OperationsResearch_СourseWork.TRPZSolution">
-    <Position X="3.25" Y="2" Width="2.25" />
+    <Position X="6.5" Y="0.5" Width="2.25" />
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
     <NestedTypes>
       <Enum Name="OperationsResearch_СourseWork.TRPZSolution.Method" Collapsed="true">
         <TypeIdentifier>
-          <NewMemberFileName>TRPZSolution\MethodsFirstDBR.cs</NewMemberFileName>
+          <NewMemberFileName>Solution\MethodsFirstDBR.cs</NewMemberFileName>
         </TypeIdentifier>
       </Enum>
       <Struct Name="OperationsResearch_СourseWork.TRPZSolution.FogelElement" Collapsed="true">
         <TypeIdentifier>
-          <NewMemberFileName>TRPZSolution\MethodsFirstDBR.cs</NewMemberFileName>
+          <NewMemberFileName>Solution\MethodsFirstDBR.cs</NewMemberFileName>
         </TypeIdentifier>
       </Struct>
       <Class Name="OperationsResearch_СourseWork.TRPZSolution.FindLoop" Collapsed="true">
         <TypeIdentifier>
-          <NewMemberFileName>TRPZSolution\TRPZSolution.cs</NewMemberFileName>
+          <NewMemberFileName>Solution\TRPZSolution.cs</NewMemberFileName>
         </TypeIdentifier>
       </Class>
       <Struct Name="OperationsResearch_СourseWork.TRPZSolution.Element" Collapsed="true">
         <TypeIdentifier>
-          <NewMemberFileName>TRPZSolution\TRPZSolution.cs</NewMemberFileName>
+          <NewMemberFileName>Solution\TRPZSolution.cs</NewMemberFileName>
         </TypeIdentifier>
       </Struct>
     </NestedTypes>
     <TypeIdentifier>
       <HashCode>FARBAAEAAAIAAAABOAYABAABABAIAAEIAAASAAAACCA=</HashCode>
-      <FileName>TRPZSolution\MethodsFirstDBR.cs</FileName>
+      <FileName>Solution\MethodsFirstDBR.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Enum Name="OperationsResearch_СourseWork.Algorithm">
-    <Position X="6" Y="2" Width="1.5" />
+  <Class Name="OperationsResearch_СourseWork.MainWindow">
+    <Position X="13.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Enum Name="OperationsResearch_СourseWork.Algorithm" Collapsed="true">
+    <Position X="13.75" Y="6.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAABAAAA=</HashCode>
       <FileName>Models\SolutionData.cs</FileName>

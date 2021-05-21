@@ -65,6 +65,8 @@ namespace OperationsResearch_СourseWork
         {
 
             solutionData = new SolutionData();
+            solutionData.PathInputData = string.Empty;
+            solutionData.PathOutputData = string.Empty;
             experimentalData = new ExperimentalData();
 
             Predicate<object> canExecuted0 = obj => (obj as SolutionData).IsValid;
@@ -72,7 +74,7 @@ namespace OperationsResearch_СourseWork
             {
                 try
                 {
-                    (int n, int[] vProjects, float[] vPrices) = ReadData(@$"InputData/{solutionData.PathInputData}");
+                    (int[] vProjects, float[] vPrices) = ReadData(@$"InputData/{solutionData.PathInputData}");
                     var solution = new TRPZSolution(vProjects, vPrices);
 
                     var result = solutionData.ChosenAlgorithm switch
@@ -130,7 +132,7 @@ namespace OperationsResearch_СourseWork
                     solutionData.PathOutputData = string.Empty;
                     solutionData.ChosenAlgorithm = Algorithm.Potential;
                 }
-                catch(ArgumentException)
+                catch(Exception)
                 {
                     solutionData.PathInputData = "Невалідний файл";
                 }              
@@ -165,14 +167,11 @@ namespace OperationsResearch_СourseWork
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
-        (int n, int[] vProjects, float[] vPrices) ReadData(string pathFile)
+        (int[] vProjects, float[] vPrices) ReadData(string pathFile)
         {
 
             using (StreamReader sr = new StreamReader(pathFile, System.Text.Encoding.Default))
             {
-                string line = sr.ReadLine();
-                int n = int.Parse(line);
-
                 string[] projects = sr.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
                 string[] prices = sr.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
@@ -188,7 +187,7 @@ namespace OperationsResearch_СourseWork
                 for (int i = 0; i < prices.Length; i++)
                     vPrices[i] = float.Parse(prices[i]);
 
-                return (n, vProjects, vPrices);
+                return (vProjects, vPrices);
             }
         }
     }

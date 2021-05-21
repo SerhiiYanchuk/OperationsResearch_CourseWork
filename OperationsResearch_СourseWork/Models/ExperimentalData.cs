@@ -23,7 +23,7 @@ namespace OperationsResearch_СourseWork
         public ExperimentalData()
         {
             n1 = 100;
-            n2 = 900;
+            n2 = 1000;
             step = 100;
             c1 = 100;
             c2 = 1000;
@@ -36,26 +36,36 @@ namespace OperationsResearch_СourseWork
 
             errors = new Dictionary<string, string>();
         }
+        private void isN_Valid()
+        {
+            if (n1 < 0)
+            {
+                errors["N1"] = "Не може бути від'ємним";
+            }
+            else if (n2 < 0)
+            {
+                errors["N2"] = "Не може бути від'ємним";
+            }
+            else if (n1 > n2)
+            {
+                errors["N1"] = "Ліва частина не може бути більше правої";
+                errors["N2"] = "Права частина не може бути менше лівої";
+            }
+            else
+            {
+                errors["N1"] = null;
+                errors["N2"] = null;
+            }
+            OnPropertyChanged("N1");
+            OnPropertyChanged("N2");
+        }
         public int N1
         {
             get { return n1; }
             set
             {
                 n1 = value;
-
-                if (n1 < 0)
-                {
-                    errors["N1"] = "Не може бути від'ємним";
-                }
-                else if (n1 > n2)
-                {
-                    errors["N1"] = "Ліва частина не може бути більше правої";
-                }
-                else
-                {
-                    errors["N1"] = null;
-                }
-                OnPropertyChanged("N1");
+                isN_Valid();
             }
         }
         public int N2
@@ -64,16 +74,7 @@ namespace OperationsResearch_СourseWork
             set
             {
                 n2 = value;
-
-                if (n1 > n2)
-                {
-                    errors["N2"] = "Права частина не може бути менше лівої";
-                }
-                else
-                {
-                    errors["N2"] = null;
-                }
-                OnPropertyChanged("N2");
+                isN_Valid();
             }
         }
         public int Step
@@ -94,26 +95,36 @@ namespace OperationsResearch_СourseWork
                 OnPropertyChanged("Step");
             }
         }
+        private void isC_Valid()
+        {
+            if (c1 < 0)
+            {
+                errors["C1"] = "Не може бути від'ємним";
+            }
+            else if (c2 < 0)
+            {
+                errors["C2"] = "Не може бути від'ємним";
+            }
+            else if (c1 > c2)
+            {
+                errors["C1"] = "Ліва частина не може бути більше правої";
+                errors["C2"] = "Права частина не може бути менше лівої";
+            }
+            else
+            {
+                errors["C1"] = null;
+                errors["C2"] = null;
+            }
+            OnPropertyChanged("C1");
+            OnPropertyChanged("C2");
+        }
         public int C1
         {
             get { return c1; }
             set
             {
                 c1 = value;
-
-                if (c1 < 0)
-                {
-                    errors["C1"] = "Не може бути від'ємним";
-                }
-                else if (c1 > c2)
-                {
-                    errors["C1"] = "Ліва частина не може бути більше правої";
-                }
-                else
-                {
-                    errors["C1"] = null;
-                }
-                OnPropertyChanged("C1");
+                isC_Valid();
             }
         }
         public int C2
@@ -122,17 +133,31 @@ namespace OperationsResearch_СourseWork
             set
             {
                 c2 = value;
-
-                if (c1 > c2)
-                {
-                    errors["C2"] = "Права частина не може бути менше лівої";
-                }
-                else
-                {
-                    errors["C2"] = null;
-                }
-                OnPropertyChanged("C2");
+                isC_Valid();
             }
+        }
+        private void isDC_Valid()
+        {
+            if (dC1 < 0 || dC1 > 1)
+            {
+                errors["DC1"] = "Можливі значення від 0 до 1";
+            }
+            else if (dC2 < 0 || dC2 > 1)
+            {
+                errors["DC2"] = "Можливі значення від 0 до 1";
+            }
+            else if (dC1 > dC2)
+            {
+                errors["DC1"] = "Ліва частина не може бути більше правої";
+                errors["DC2"] = "Права частина не може бути менше лівої";
+            }
+            else
+            {
+                errors["DC1"] = null;
+                errors["DC2"] = null;
+            }
+            OnPropertyChanged("DC1");
+            OnPropertyChanged("DC2");
         }
         public float DC1
         {
@@ -140,20 +165,7 @@ namespace OperationsResearch_СourseWork
             set
             {
                 dC1 = value;
-
-                if (dC1 < 0)
-                {
-                    errors["DC1"] = "Не може бути від'ємним";
-                }
-                else if (dC1 > dC2)
-                {
-                    errors["DC1"] = "Ліва частина не може бути більше правої";
-                }
-                else
-                {
-                    errors["DC1"] = null;
-                }
-                OnPropertyChanged("DC1");
+                isDC_Valid();
             }
         }
         public float DC2
@@ -162,17 +174,31 @@ namespace OperationsResearch_СourseWork
             set
             {
                 dC2 = value;
-
-                if (dC1 > dC2)
-                {
-                    errors["DC2"] = "Права частина не може бути менше лівої";
-                }
-                else
-                {
-                    errors["DC2"] = null;
-                }
-                OnPropertyChanged("DC2");
+                isDC_Valid();
             }
+        }
+        private void isB_Valid()
+        {
+            if (b1 < 0)
+            {
+                errors["B1"] = "Не може бути від'ємним";
+            }
+            else if (b2 < 0)
+            {
+                errors["B2"] = "Не може бути від'ємним";
+            }
+            else if (b1 > b2)
+            {
+                errors["B1"] = "Ліва частина не може бути більше правої";
+                errors["B2"] = "Права частина не може бути менше лівої";
+            }
+            else
+            {
+                errors["B1"] = null;
+                errors["B2"] = null;
+            }
+            OnPropertyChanged("B1");
+            OnPropertyChanged("B2");
         }
         public int B1
         {
@@ -180,19 +206,7 @@ namespace OperationsResearch_СourseWork
             set
             {
                 b1 = value;
-
-                if (b1 < 0)
-                {
-                    errors["B1"] = "Не може бути від'ємним";
-                }
-                else if (b1 > b2)
-                {
-                    errors["B1"] = "Ліва частина не може бути більше правої";
-                }
-                else
-                {
-                    errors["B1"] = null;
-                }
+                isB_Valid();
                 OnPropertyChanged("B1");
             }
         }
@@ -202,17 +216,32 @@ namespace OperationsResearch_СourseWork
             set
             {
                 b2 = value;
-
-                if (b1 > b2)
-                {
-                    errors["B2"] = "Права частина не може бути менше лівої";
-                }
-                else
-                {
-                    errors["B2"] = null;
-                }
+                isB_Valid();
                 OnPropertyChanged("B2");
             }
+        }
+        private void isDB_Valid()
+        {
+            if (dB1 < 0 || dB1 > 1)
+            {
+                errors["DB1"] = "Можливі значення від 0 до 1";
+            }
+            else if (dB2 < 0 || dB2 > 1)
+            {
+                errors["DB2"] = "Можливі значення від 0 до 1";
+            }
+            else if (dB1 > dB2)
+            {
+                errors["DB1"] = "Ліва частина не може бути більше правої";
+                errors["DB2"] = "Права частина не може бути менше лівої";
+            }
+            else
+            {
+                errors["DB1"] = null;
+                errors["DB2"] = null;
+            }
+            OnPropertyChanged("DB1");
+            OnPropertyChanged("DB2");
         }
         public float DB1
         {
@@ -220,20 +249,7 @@ namespace OperationsResearch_СourseWork
             set
             {
                 dB1 = value;
-
-                if (dB1 < 0)
-                {
-                    errors["DB1"] = "Не може бути від'ємним";
-                }
-                else if (dB1 > dB2)
-                {
-                    errors["DB1"] = "Ліва частина не може бути більше правої";
-                }
-                else
-                {
-                    errors["DB1"] = null;
-                }
-                OnPropertyChanged("DB1");
+                isDB_Valid();
             }
         }
         public float DB2
@@ -242,16 +258,7 @@ namespace OperationsResearch_СourseWork
             set
             {
                 dB2 = value;
-
-                if (dB1 > dB2)
-                {
-                    errors["DB2"] = "Права частина не може бути менше лівої";
-                }
-                else
-                {
-                    errors["DB2"] = null;
-                }
-                OnPropertyChanged("DB2");
+                isDB_Valid();
             }
         }
 
